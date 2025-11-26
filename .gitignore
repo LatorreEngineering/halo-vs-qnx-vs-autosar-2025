@@ -1,41 +1,50 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+```gitignore
+# Compiled artifacts
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
+*.elf
+*.hex
+*.map
+*.bin
+*.a
 *.so
 *.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
+# Build directories
+/build/
+/out/
+/dist/
+**/Debug/
+**/Release/
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Executables
-*.exe
-*.out
-*.app
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
 
-# debug information files
-*.dwo
+# Results (temporary)
+/results/**/*.tmp
+/results/**/*.log
+/results/**/.DS_Store
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Trace files
+*.trace
+*.trc
+
+# Lauterbach
+*.cmm~
+```
+
+---
