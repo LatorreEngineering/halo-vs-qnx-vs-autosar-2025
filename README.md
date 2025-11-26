@@ -63,28 +63,28 @@ chmod +x run_all_qemu.sh
 ### 1. Real-Time Determinism (`01-rt-determinism`)
 - **cyclictest** on all three stacks
 - Measures worst-case interrupt latency and jitter
-- **Key finding:** QNX wins hard RT (<10µs), Halo acceptable for ADAS (<50µs), AUTOSAR lags
+- **Key finding:** tbd
 
 ### 2. Communication Latency (`02-comms-latency`)
 - End-to-end sensor→actuator using:
   - Halo: **VBSLite** (Fast DDS + MVBS)
   - AUTOSAR: **SOME/IP** (Vector stack)
   - QNX: **PPS** (Persistent Publish/Subscribe)
-- **Key finding:** Halo achieves <1ms claim (0.92ms measured)
+- **Key finding:** tbd
 
 ### 3. Memory Footprint (`03-memory-footprint`)
 - Boot-to-idle RAM/Flash consumption
 - Linker map analysis
-- **Key finding:** Halo 30% less storage than QNX, 70% less than AUTOSAR
+- **Key finding:** tbd
 
 ### 4. Virtualization Overhead (`04-virtualization-overhead`)
 - Mixed-criticality VM switching
 - Halo LiVisor vs QNX Hypervisor
-- **Key finding:** QNX lower overhead (6µs vs 11µs), but Halo claim of "80% less than AUTOSAR" validated
+- **Key finding:** tbd
 
 ### 5. Crypto Performance (`05-crypto-performance`)
 - AES-256-GCM throughput using HW accelerators
-- **Key finding:** Halo 4x faster than AUTOSAR (validates claim), edges QNX
+- **Key finding:** tbd
 
 ---
 
