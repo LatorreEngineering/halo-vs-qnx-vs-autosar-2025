@@ -3,7 +3,7 @@
 > **The first fully independent, reproducible, head-to-head comparison** of Li Auto's open-source Halo OS (StarRing OS) against the two dominant automotive stacks: **QNX+Linux** and **AUTOSAR Classic/Adaptive**.
 
 **Published:** November 2025  
-**Author:** Ra´ul Latorre Fortes
+**Author:** Raul Latorre Fortes
 **License:** Apache 2.0  
 **GitHub:** https://github.com/LatorreEngineering/halo-os-vs-qnx-vs-autosar-2025  
 **Previous Article:** [LinkedIn Analysis](https://www.linkedin.com/feed/update/urn:li:activity:7397228392372256768/)
