@@ -1,4 +1,3 @@
-```markdown
 # Halo OS vs QNX+Linux vs AUTOSAR — Independent 2025 Benchmarks
 
 > **The first fully independent, reproducible, head-to-head comparison** of Li Auto's open-source Halo OS (StarRing OS) against the two dominant automotive stacks: **QNX+Linux** and **AUTOSAR Classic/Adaptive**.
