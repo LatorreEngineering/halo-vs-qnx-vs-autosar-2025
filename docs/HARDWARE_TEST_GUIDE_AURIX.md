@@ -398,7 +398,7 @@ qnx,1,9
 
 ---
 
-## 8. Expected Results (Based on Our Nov 2025 Tests)
+## 8. Expected Results (Based on Our Previous Oct-Nov 2025 Tests; to be updated with final results)
 
 ### 8.1 Real-Time Determinism
 
