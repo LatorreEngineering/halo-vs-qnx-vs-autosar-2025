@@ -34,7 +34,7 @@ This repository contains **complete, runnable benchmarks** on real hardware (Inf
 | **Memory footprint (full)**     | tbm MB        | tbm MB        | tbm MB        |  tbd          |
 | **Crypto (AES-256-GCM)**        | tbm GB/s      | tbm GB/s      | tbm GB/s      |  tbd          |
 | **VM switch overhead**          | tbm µs        | tbm µs        | N/A           |  tbd          |
-| **Cost/License**                | Free          | $100K+        | $50K+         | ✓  Halo.OS    |
+| **Cost/License**                | Free          | $XXX€+        | $XX€+         | ✓  Halo.OS    |
 | **Safety Certification**        | ASIL-B (WIP)  | ASIL-D        | ASIL-D        | ✓ QNX/AUTOSAR |
 | **Ecosystem Maturity**          | Nascent       | Mature        | Mature        | ✓ QNX/AUTOSAR |
 
