@@ -1,0 +1,88 @@
+name: Nightly Benchmarks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'  # 02:00 UTC daily
+
+jobs:
+  qemu-benchmarks:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi qemu-system-arm \
+            qemu-system-aarch64 python3-pip python3-venv
+          pip3 install pandas matplotlib numpy scipy
+      
+      - name: Setup QEMU for TriCore (TC397 emulation)
+        run: |
+          # Install QEMU-TriCore (custom build for AURIX)
+          wget https://github.com/qemu/qemu/releases/download/v8.2.0/qemu-8.2.0.tar.xz
+          tar xf qemu-8.2.0.tar.xz
+          cd qemu-8.2.0
+          ./configure --target-list=tricore-softmmu --enable-tcg
+          make -j$(nproc)
+          sudo make install
+      
+      - name: Build all benchmarks
+        run: |
+          cd benchmarks
+          for bench in 01-rt-determinism 02-comms-latency 03-memory-footprint \
+                       04-virtualization-overhead 05-crypto-performance; do
+            echo "Building $bench..."
+            cd $bench
+            if [ -f Makefile ]; then
+              make qemu
+            fi
+            cd ..
+          done
+      
+      - name: Run benchmarks
+        run: |
+          chmod +x run_all_qemu.sh
+          ./run_all_qemu.sh | tee benchmark_run.log
+      
+      - name: Generate reports
+        run: |
+          python3 benchmarks/01-rt-determinism/plot_jitter.py
+          python3 benchmarks/02-comms-latency/measure_e2e.py
+          python3 benchmarks/03-memory-footprint/compare_sizes.py
+      
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results-${{ github.sha }}
+          path: |
+            results/2025-11-benchmarks/
+            benchmark_run.log
+      
+      - name: Publish to GitHub Pages (if main branch)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./results/2025-11-benchmarks
+          destination_dir: latest
+
+  hardware-test-notification:
+    runs-on: ubuntu-latest
+    needs: qemu-benchmarks
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Notify hardware test status
+        run: |
+          echo "✓ QEMU benchmarks passed"
+          echo "⚠ Hardware tests require manual execution (see docs/HARDWARE_TEST_GUIDE.md)"
+          echo "Hardware test results are stored in results/hardware/ directory"
